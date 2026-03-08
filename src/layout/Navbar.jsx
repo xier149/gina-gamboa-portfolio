@@ -54,10 +54,10 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button 
         <div className="hidden md:block">
           <Button size="sm">Let's Talk</Button>
-        </div>
+        </div>*/}
 
         {/* Mobile Menu Button */}
         <button

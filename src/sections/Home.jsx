@@ -66,10 +66,12 @@ export const Home = () => {
               <Button size="lg">
                 View My Work <ArrowRight className="w-5 h-5" />
               </Button>
+              <a href="/CV/Gina_Gamboa_CV.pdf" download = "Gina-Gamboa-Resume">
               <AnimatedBorderButton>
                 <Download className="w-5 h-5" />
                 Download CV
               </AnimatedBorderButton>
+              </a>
             </div>
 
             {/* Social Links */}
