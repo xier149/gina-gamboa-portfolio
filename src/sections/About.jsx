@@ -54,25 +54,33 @@ export const About = () => {
           </h2>
 
           <div className="space-y-4 text-muted-foreground">
-            <p>
-              I'm Gina Gamboa, an ACT student majoring in Software Development at the
-              University of San Jose–Recoletos. I am passionate about building software
-              systems that solve real-world problems and improve everyday processes.
-            </p>
+  <p>
+    I'm Gina Gamboa, an ACT student specializing in Software Development at the
+    University of San Jose–Recoletos. I am passionate about creating software
+    solutions that improve everyday processes and solve real-world problems.
+  </p>
 
-            <p>
-              I enjoy developing web applications and system solutions, from frontend
-              interfaces to backend logic. Some of the projects I’ve worked on include
-              a Barangay Relief Tracking System, a pixel-style leaderboard system,
-              and prototypes like InvoStore.
-            </p>
+  <p>
+    I focus on building efficient, user-centered systems by combining frontend
+    design and backend logic. My approach is rooted in structured
+    problem-solving, continuous learning, and writing clean, maintainable code
+    that can scale and adapt over time.
+  </p>
 
-            <p>
-              As a student developer, I continue to explore new technologies, strengthen
-              my programming skills, and work on projects that contribute to communities
-              and organizations.
-            </p>
-          </div>
+  <p>
+    I enjoy working both independently and collaboratively, where I can contribute
+    ideas, adapt to feedback, and continuously improve my solutions. I value
+    clarity, functionality, and simplicity in every system I build.
+  </p>
+
+  <p>
+    As I grow in my development journey, my goal is to become a reliable software
+    developer who creates impactful systems that support communities,
+    organizations, and everyday users.
+  </p>
+</div>
+
+
 
           <motion.div
             className="glass rounded-2xl p-6 glow-border"

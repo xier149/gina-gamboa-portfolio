@@ -36,7 +36,7 @@ export const Navbar = () => {
           href="#"
           className="text-xl font-bold tracking-tight hover:text-primary"
         >
-          GiNa.Dev<span className="text-primary">.</span>
+          GiNa<span className="text-primary">.</span>Gamboa
         </a>
 
         {/* Desktop Nav */}

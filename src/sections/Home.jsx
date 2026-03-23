@@ -63,9 +63,11 @@ export const Home = () => {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
+              <a href="#projects">
               <Button size="lg">
                 View My Work <ArrowRight className="w-5 h-5" />
               </Button>
+              </a>
               <a href="/CV/Gina_Gamboa_CV.pdf" download = "Gina-Gamboa-Resume">
               <AnimatedBorderButton>
                 <Download className="w-5 h-5" />
