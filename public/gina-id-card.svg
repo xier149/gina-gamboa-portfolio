@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1440">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f3ff"/>
+      <stop offset="1" stop-color="#e5b8f4"/>
+    </linearGradient>
+    <clipPath id="portrait"><rect x="92" y="168" width="840" height="770" rx="28"/></clipPath>
+  </defs>
+  <rect width="1024" height="1440" rx="72" fill="url(#bg)"/>
+  <rect x="34" y="34" width="956" height="1372" rx="48" fill="none" stroke="#6f087b" stroke-opacity=".3" stroke-width="4"/>
+  <rect x="92" y="168" width="840" height="770" rx="28" fill="#260044"/>
+  <image href="/ginagamboa.jpg" x="92" y="168" width="840" height="770" preserveAspectRatio="xMidYMid meet" clip-path="url(#portrait)"/>
+  <rect x="92" y="168" width="840" height="770" rx="28" fill="#140021" fill-opacity=".08"/>
+  <text x="92" y="1060" fill="#260044" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="700">Gina Gamboa</text>
+  <text x="92" y="1132" fill="#6f087b" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="4">SOFTWARE DEVELOPER</text>
+  <circle cx="882" cy="1244" r="48" fill="#ed1268" fill-opacity=".18"/>
+  <path d="M860 1244h44M882 1222v44" stroke="#ed1268" stroke-width="6" stroke-linecap="round"/>
+  <text x="92" y="1290" fill="#6f087b" font-family="Inter, Arial, sans-serif" font-size="22" letter-spacing="3">AI-AUGMENTED DEVELOPMENT</text>
+</svg>
+

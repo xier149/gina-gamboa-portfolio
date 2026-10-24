@@ -1,5 +1,4 @@
-import { Button } from "@/components/Button";
-import { Menu, X } from "lucide-react";
+import GooeyNav from "../components/GooeyNav";
 import { useEffect, useState } from "react";
 
 const navLinks = [
@@ -10,87 +9,69 @@ const navLinks = [
   { href: "#certifications", label: "Certifications" },
   { href: "#contact", label: "Contact" },
 ];
+const sectionIds = navLinks.map(({ href }) => href.slice(1));
 
 export const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const getIndexFromHash = () => {
+    const hash = window.location.hash.slice(1);
+    const index = sectionIds.indexOf(hash);
+    return index >= 0 ? index : 0;
+  };
+  const [activeIndex, setActiveIndex] = useState(() => (
+    typeof window === "undefined" ? 0 : getIndexFromHash()
+  ));
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    let frame = 0;
+    const updateFromScroll = () => {
+      frame = 0;
+      const marker = window.scrollY + window.innerHeight * 0.36;
+      let nextIndex = 0;
+      sectionIds.forEach((id, index) => {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= marker) nextIndex = index;
+      });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
+        nextIndex = sectionIds.length - 1;
+      }
+      setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
     };
+    const scheduleScrollUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateFromScroll);
+    };
+    const updateFromLocation = () => setActiveIndex(getIndexFromHash());
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", scheduleScrollUpdate, { passive: true });
+    window.addEventListener("hashchange", updateFromLocation);
+    window.addEventListener("popstate", updateFromLocation);
+    updateFromScroll();
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleScrollUpdate);
+      window.removeEventListener("hashchange", updateFromLocation);
+      window.removeEventListener("popstate", updateFromLocation);
+    };
+  }, [sectionIds]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 transition-all duration-500 ${
-        isScrolled ? "glass-strong py-3" : "bg-transparent py-5"
-      }  z-50`}
-    >
-      <nav className="container mx-auto px-6 flex items-center justify-between">
-        <a
-          href="#"
-          className="text-xl font-bold tracking-tight hover:text-primary"
-        >
-          GiNa<span className="text-primary">.</span>Gamboa
-        </a>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-1">
-          <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
-            {navLinks.map((link, index) => (
-              <a
-                href={link.href}
-                key={index}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
+    <header className="fixed left-0 right-0 top-0 z-50 px-3 py-3 sm:px-6 sm:py-4">
+      <nav className="mx-auto flex max-w-7xl justify-center">
+        <div className="max-w-full overflow-x-auto rounded-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <GooeyNav
+            items={navLinks}
+            activeIndex={activeIndex}
+            onChange={(index) => setActiveIndex(index)}
+            theme="dark"
+            color="#ed1268"
+            activeTextColor="#140021"
+            colors={["#6f087b", "#a30ba9", "#ed1268", "#f03b82"]}
+            size="sm"
+            frame
+            className="portfolio-gooey-nav"
+          />
         </div>
-
-        {/* CTA Button 
-        <div className="hidden md:block">
-          <Button size="sm">Let's Talk</Button>
-        </div>*/}
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 text-foreground cursor-pointer"
-          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </nav>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden glass-strong animate-fade-in">
-          <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-            {navLinks.map((link, index) => (
-              <a
-                href={link.href}
-                key={index}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg text-muted-foreground hover:text-foreground py-2"
-              >
-                {link.label}
-              </a>
-            ))}
-
-            <Button onClick={() => setIsMobileMenuOpen(false)}>
-              Contact Me
-            </Button>
-          </div>
-        </div>
-      )}
     </header>
   );
 };
-
 export default Navbar;

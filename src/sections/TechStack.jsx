@@ -1,4 +1,4 @@
-import { useState } from "react";
+import LogoLoop from "../components/LogoLoop";
 import {
   SiHtml5,
   SiCss3,
@@ -34,72 +34,34 @@ const techStack = [
 ];
 
 export const TechStack = () => {
+  const logoItems = techStack.map((tech) => {
+    const Icon = tech.icon;
 
-  const [filter, setFilter] = useState("all");
-
-  const filteredTech =
-    filter === "all"
-      ? techStack
-      : techStack.filter((tech) => tech.category === filter);
+    return {
+      title: tech.name,
+      ariaLabel: tech.name,
+      hoverColor: "#f03b82",
+      node: <Icon className={`h-[38px] w-[38px] ${tech.color}`} aria-hidden="true" />,
+    };
+  });
 
   return (
-    <section id="TechStack" className="py-24">
-      <div className="container mx-auto px-6">
-
-        {/* Title */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">
-            My <span className="text-primary">Tech Stack</span>
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Technologies and tools I use to build web applications and software projects.
-          </p>
-        </div>
-
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-
-          {["all","frontend","backend","framework","database","tools"].map((category) => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-5 py-2 rounded-full text-sm capitalize transition-all
-              ${
-                filter === category
-                  ? "bg-primary text-white"
-                  : "glass text-muted-foreground hover:text-white hover:bg-primary/20"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-
-        </div>
-
-        {/* Tech Grid */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6">
-
-          {filteredTech.map((tech, index) => {
-            const Icon = tech.icon;
-
-            return (
-              <div
-                key={index}
-                className="group flex flex-col items-center justify-center p-6 rounded-2xl glass hover:bg-primary/10 transition-all duration-300 hover:scale-105 cursor-pointer"
-              >
-                <Icon
-                  className={`text-5xl mb-3 ${tech.color} group-hover:scale-110 transition-transform`}
-                />
-
-                <span className="text-sm text-muted-foreground group-hover:text-white transition-colors">
-                  {tech.name}
-                </span>
-              </div>
-            );
-          })}
-
-        </div>
-      </div>
+    <section id="TechStack" className="relative overflow-hidden py-12 sm:py-16">
+      <LogoLoop
+        logos={logoItems}
+        speed={72}
+        logoHeight={38}
+        gap={52}
+        pauseOnHover
+        labels="below"
+        fadeOut
+        fadeOutWidth={0.12}
+        scaleOnHover
+        draggable
+        intro
+        ariaLabel="Technology stack"
+        style={{ width: "100%" }}
+      />
     </section>
   );
 };

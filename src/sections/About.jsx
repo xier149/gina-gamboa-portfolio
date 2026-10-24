@@ -1,129 +1,100 @@
-import { Code2, Lightbulb, Rocket, Users } from "lucide-react";
+import { Bot, Monitor, Server, Workflow } from "lucide-react";
 import { motion } from "framer-motion";
+import BlurText from "../components/BlurText";
 
-const highlights = [
-  {
-    icon: Code2,
-    title: "System Development",
-    description:
-      "Designing and developing web-based systems that solve real-world community problems.",
-  },
-  {
-    icon: Rocket,
-    title: "Continuous Learning",
-    description:
-      "Constantly improving my skills in software development and modern web technologies.",
-  },
-  {
-    icon: Users,
-    title: "Community Solutions",
-    description:
-      "Building systems that support communities like barangay management and relief tracking.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Creative Problem Solving",
-    description:
-      "Turning ideas into functional applications through code and thoughtful system design.",
-  },
+const focusAreas = [
+  { icon: Monitor, label: "Frontend Development" },
+  { icon: Server, label: "Backend Development" },
+  { icon: Workflow, label: "Workflow Automation" },
+  { icon: Bot, label: "AI-Assisted Development" },
 ];
 
 export const About = () => {
   return (
-    <section id="about" className="py-32 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-
-        {/* Top Content */}
-        <motion.div
-          className="max-w-3xl mx-auto text-center space-y-8"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-
-          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase">
-            About Me
-          </span>
-
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-secondary-foreground">
-            Learning to build
-            <span className="font-serif italic font-normal text-white">
-              {" "}impactful software systems.
-            </span>
-          </h2>
-
-          <div className="space-y-4 text-muted-foreground">
-  <p>
-    I'm Gina Gamboa, an ACT student specializing in Software Development at the
-    University of San Jose–Recoletos. I am passionate about creating software
-    solutions that improve everyday processes and solve real-world problems.
-  </p>
-
-  <p>
-    I focus on building efficient, user-centered systems by combining frontend
-    design and backend logic. My approach is rooted in structured
-    problem-solving, continuous learning, and writing clean, maintainable code
-    that can scale and adapt over time.
-  </p>
-
-  <p>
-    I enjoy working both independently and collaboratively, where I can contribute
-    ideas, adapt to feedback, and continuously improve my solutions. I value
-    clarity, functionality, and simplicity in every system I build.
-  </p>
-
-  <p>
-    As I grow in my development journey, my goal is to become a reliable software
-    developer who creates impactful systems that support communities,
-    organizations, and everyday users.
-  </p>
-</div>
-
-
-
+    <section id="about" className="relative overflow-hidden py-24 sm:py-28 lg:py-32">
+      <div className="container relative z-10 mx-auto px-6 lg:px-8">
+        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:gap-20">
           <motion.div
-            className="glass rounded-2xl p-6 glow-border"
-            initial={{ opacity: 0, y: 40 }}
+            className="max-w-2xl"
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.25 }}
           >
-            <p className="text-lg font-medium italic text-foreground">
-              "My goal is to become a skilled software developer by continuously learning,
-              building meaningful projects, and creating systems that make processes
-              easier for people and communities."
-            </p>
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-primary">
+              About Me
+            </span>
+            <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-secondary-foreground sm:text-4xl lg:text-5xl">
+              <BlurText
+                text="The developer behind the code."
+                trigger="view"
+                color="currentColor"
+                highlightColor="currentColor"
+                animateBy="words"
+                blur={12}
+                distance={24}
+                duration={0.55}
+              />
+            </h2>
+
+            <div className="mt-6 space-y-4 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+              <p>
+                I&apos;m Gina Gamboa, an ACT student building my foundation in
+                software development through hands-on projects and continuous
+                learning. I enjoy turning practical ideas into clear, useful
+                digital experiences.
+              </p>
+              <p>
+                My interests span frontend interfaces, backend logic, workflow
+                automation, and AI-assisted development. I use modern tools to
+                work thoughtfully, learn faster, and create software that is
+                functional, maintainable, and easy to use.
+              </p>
+            </div>
           </motion.div>
 
-        </motion.div>
-
-        {/* Bottom Highlights */}
-        <div className="mt-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {highlights.map((item, idx) => (
-            <motion.div
-              key={idx}
-              className="glass p-6 rounded-2xl text-center hover:scale-105 transition-all duration-300"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 hover:bg-primary/20">
-                <item.icon className="w-6 h-6 text-primary" />
-              </div>
-
-              <h3 className="text-lg font-semibold mb-2">
-                {item.title}
-              </h3>
-
-              <p className="text-sm text-muted-foreground">
-                {item.description}
-              </p>
-            </motion.div>
-          ))}
+          <motion.div
+            className="lg:pt-8"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.12 }}
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">
+              What I Focus On
+            </p>
+            <div className="mt-5 divide-y divide-border/70 border-y border-border/70">
+              {focusAreas.map(({ icon: Icon, label }, index) => (
+                <motion.div
+                  key={label}
+                  className="flex items-center gap-4 py-4 text-foreground transition-colors duration-300 hover:text-primary"
+                  initial={{ opacity: 0, x: 16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="text-base font-medium sm:text-lg">{label}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
 
+        <motion.div
+          className="mt-14 flex items-center gap-4 border-t border-border/60 pt-5 text-sm text-muted-foreground sm:mt-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+          <span>
+            ACT student at the University of San Jose–Recoletos
+          </span>
+        </motion.div>
       </div>
     </section>
   );
