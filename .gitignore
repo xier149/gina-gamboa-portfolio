@@ -13,6 +13,10 @@ dist-ssr
 .vercel/
 .playwright-mcp/
 artifacts/
+coverage/
+.vite/
+.cache/
+*.tsbuildinfo
 *.local
 .env*
 !.env.example

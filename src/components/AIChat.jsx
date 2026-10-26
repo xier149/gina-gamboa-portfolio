@@ -58,7 +58,14 @@ export const AIChat = () => {
         body: JSON.stringify({ message: text, history }),
       });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.error || "The AI assistant could not answer right now.");
+      if (!response.ok) {
+        const fallback = response.status === 429
+          ? "The AI assistant is temporarily rate-limited. Please try again later."
+          : response.status >= 500
+            ? "The AI assistant is temporarily unavailable. Please contact Gina directly."
+            : "Please check your question and try again.";
+        throw new Error(result.error || fallback);
+      }
       setMessages((current) => [...current, { role: "model", text: result.answer }]);
     } catch (requestError) {
       setError(requestError.message || "The AI assistant could not answer right now.");
