@@ -1054,8 +1054,8 @@ export const LogoLoop = memo(
           ? undefined
           : toCssLength(width)
         : (toCssLength(width) ?? '100%'),
-      '--logoloop-gap': `${gap}px`,
-      '--logoloop-logoHeight': `${logoHeight}px`,
+      '--logoloop-gap': typeof gap === 'number' ? `${gap}px` : gap,
+      '--logoloop-logoHeight': typeof logoHeight === 'number' ? `${logoHeight}px` : logoHeight,
       ...(amount > 0 && {
         '--logoloop-gray': Math.min(1, amount * 2).toFixed(3),
         '--logoloop-dim': (1 - amount * 0.6).toFixed(3)

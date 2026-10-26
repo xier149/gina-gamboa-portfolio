@@ -42,7 +42,7 @@ const certifications = [
   link: `https://drive.google.com/file/d/${driveId}/view?usp=sharing`,
 }));
 
-const INITIAL_COUNT = 8;
+const INITIAL_COUNT = 6;
 
 export const Certifications = () => {
   const [showAll, setShowAll] = useState(false);
@@ -67,8 +67,8 @@ export const Certifications = () => {
   }, [selectedCertificate]);
 
   return (
-    <section id="certifications" className="relative overflow-hidden py-20 sm:py-24">
-      <div className="container relative z-10 mx-auto px-6 lg:px-8">
+    <section id="certifications" className="relative overflow-hidden py-14 sm:py-24">
+      <div className="container relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
         <AnimatedContent distance={28} duration={0.7} blur={1} className="mx-auto mb-10 max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">Continuous learning</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-secondary-foreground sm:text-4xl">

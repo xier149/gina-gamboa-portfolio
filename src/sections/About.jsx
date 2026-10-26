@@ -1,18 +1,21 @@
-import { Bot, Monitor, Server, Workflow } from "lucide-react";
+import { Bot, Cable, Database, Monitor, Server, TestTube2, Workflow } from "lucide-react";
 import { motion } from "framer-motion";
 import BlurText from "../components/BlurText";
 
 const focusAreas = [
   { icon: Monitor, label: "Frontend Development" },
   { icon: Server, label: "Backend Development" },
+  { icon: Cable, label: "API & Systems Integration" },
   { icon: Workflow, label: "Workflow Automation" },
+  { icon: Database, label: "Database Systems" },
+  { icon: TestTube2, label: "Testing & Collaboration" },
   { icon: Bot, label: "AI-Assisted Development" },
 ];
 
 export const About = () => {
   return (
-    <section id="about" className="relative overflow-hidden py-24 sm:py-28 lg:py-32">
-      <div className="container relative z-10 mx-auto px-6 lg:px-8">
+    <section id="about" className="relative overflow-hidden py-16 sm:py-28 lg:py-32">
+      <div className="container relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:gap-20">
           <motion.div
             className="max-w-2xl"
@@ -39,16 +42,17 @@ export const About = () => {
 
             <div className="mt-6 space-y-4 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
               <p>
-                I&apos;m Gina Gamboa, an ACT student building my foundation in
-                software development through hands-on projects and continuous
-                learning. I enjoy turning practical ideas into clear, useful
-                digital experiences.
+                I&apos;m Gina Gamboa, an ACT student and AI-Augmented Software
+                Developer Intern contributing to software solutions from
+                development through testing and improvement. I enjoy turning
+                practical requirements into clear, useful digital experiences.
               </p>
               <p>
-                My interests span frontend interfaces, backend logic, workflow
-                automation, and AI-assisted development. I use modern tools to
-                work thoughtfully, learn faster, and create software that is
-                functional, maintainable, and easy to use.
+                My work and projects span frontend interfaces, backend logic,
+                REST APIs, workflow automation, database systems, and
+                AI-assisted development. I care about understanding the
+                problem, documenting decisions, investigating issues, and
+                collaborating with others to improve the result.
               </p>
             </div>
           </motion.div>

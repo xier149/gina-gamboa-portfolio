@@ -12,8 +12,8 @@ const projects = [
       "A web-based lost and found system that allows users to report, search, and manage lost items. The platform helps organize item records and makes it easier for owners to reconnect with their belongings.",
     image: "/project/project01.png",
     tags: ["JavaScript", "CSS", "Express.js"],
-    link: "#",
     github: "https://github.com/xier149/LOST-AND-FOUND-SYSTEM",
+    contribution: "Focused on the reporting, search, and item-management flows that help users organize records and reconnect with lost items.",
   },
   {
     title: "ClickMart E-Commerce Platform",
@@ -21,8 +21,8 @@ const projects = [
       "An e-commerce application built using Microsoft Power Apps and Power Automate that allows users to browse products, manage orders, and automate certain store processes.",
     image: "/project/project02.png",
     tags: ["Power Apps", "Power Automate"],
-    link: "#",
     github: "https://github.com/xier149/ClickMart-Ecommerce-Using-Power-Apps",
+    contribution: "Worked with app screens, order flows, and automated store processes to make the browsing and management experience clearer.",
   },
   {
     title: "Jump Race Dashboard",
@@ -30,8 +30,8 @@ const projects = [
       "A simple game dashboard interface designed for the Lily Pad Games project, displaying game information and providing a visual layout for managing game-related data.",
     image: "/project/project03.png",
     tags: ["HTML", "CSS"],
-    link: "#",
     github: "https://github.com/xier149/Dashboard-for-Lily-Pad-Games",
+    contribution: "Created the dashboard interface and visual structure for presenting game information in a simple, readable layout.",
   },
   {
     title: "Ghibli E-commerce Platform",
@@ -39,8 +39,7 @@ const projects = [
       "A themed e-commerce website inspired by Studio Ghibli, where users can browse and order products. The platform includes product filtering and a responsive interface for a smooth shopping experience.",
     image: "/project/project04.png",
     tags: ["JavaScript", "HTML", "CSS"],
-    link: "#",
-    github: "#",
+    contribution: "Built the themed storefront interface, including product browsing and filtering patterns for a smoother shopping experience.",
   },
 ];
 
@@ -65,11 +64,11 @@ export const Projects = () => {
   }, [selectedProject]);
 
   return (
-    <section id="projects" className="relative overflow-hidden py-24 sm:py-28 lg:py-32">
+    <section id="projects" className="relative overflow-hidden py-16 sm:py-28 lg:py-32">
       <div className="pointer-events-none absolute right-0 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
       <div className="pointer-events-none absolute bottom-1/4 left-0 h-64 w-64 rounded-full bg-highlight/5 blur-3xl" />
 
-      <div className="container relative z-10 mx-auto px-6 lg:px-8">
+      <div className="container relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
         <AnimatedContent
           distance={36}
           duration={0.7}
@@ -161,6 +160,10 @@ export const Projects = () => {
                     {project.description}
                   </p>
 
+                  <p className="mt-3 line-clamp-2 text-xs leading-5 text-foreground/80">
+                    <span className="font-semibold text-primary">Contribution:</span> {project.contribution}
+                  </p>
+
                   <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
                     {project.tags.map((tag) => (
                       <span
@@ -176,7 +179,7 @@ export const Projects = () => {
                     <button
                       type="button"
                       onClick={() => setSelectedProject(project)}
-                      className="text-sm font-medium text-primary transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      className="inline-flex min-h-11 items-center text-sm font-medium text-primary transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       View Details
                     </button>
@@ -186,7 +189,7 @@ export const Projects = () => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label={"View " + project.title + " on GitHub"}
-                        className="ml-auto rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                        className="ml-auto inline-flex min-h-11 min-w-11 items-center justify-center rounded-full p-2.5 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
                       >
                         <Github className="h-4 w-4" />
                       </a>
@@ -244,9 +247,9 @@ export const Projects = () => {
                     </span>
                   ))}
                 </div>
-                <p className="mt-5 text-sm font-semibold text-foreground">Contribution</p>
+                <p className="mt-5 text-sm font-semibold text-foreground">My contribution</p>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  Developed and refined the project interface and core functionality using the technologies listed above.
+                  {selectedProject.contribution}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   {isRealLink(selectedProject.github) && (

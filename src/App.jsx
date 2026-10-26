@@ -7,6 +7,7 @@ import { Footer } from "./layout/Footer";
 import { TechStack } from "./sections/TechStack";
 import { Certifications } from "./sections/Certifications";
 import { HexagonalVault } from "./components/HexagonalVault";
+import { AIChat } from "./components/AIChat";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <div className="relative z-10">
         <Footer />
       </div>
+      <AIChat />
     </div>
   );
 }
