@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AlertCircle, CheckCircle, Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
-import emailjs from "@emailjs/browser";
 import AnimatedContent from "../components/AnimatedContent";
 import ClickSpark from "../components/ClickSpark";
 import Magnet from "../components/Magnet";
@@ -19,9 +18,10 @@ const socialLinks = [
 ];
 
 export const Contact = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "", website: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: null, message: "" });
+  const formStartedAt = useRef(Date.now());
 
   const updateField = (field) => (event) => {
     setFormData((current) => ({ ...current, [field]: event.target.value }));
@@ -30,6 +30,8 @@ export const Contact = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (isLoading) return;
+
     const name = formData.name.trim();
     const email = formData.email.trim();
     const message = formData.message.trim();
@@ -45,16 +47,27 @@ export const Contact = () => {
     setIsLoading(true);
     setSubmitStatus({ type: null, message: "" });
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-      if (!serviceId || !templateId || !publicKey) throw new Error("EmailJS configuration is missing. Please check your environment variables.");
-      await emailjs.send(serviceId, templateId, { name, email, message }, publicKey);
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          website: formData.website,
+          formStartedAt: formStartedAt.current,
+          requestId: typeof globalThis.crypto?.randomUUID === "function" ? globalThis.crypto.randomUUID() : `${Date.now()}-${Math.random()}`,
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || "Failed to send message. Please try again later.");
+
       setSubmitStatus({ type: "success", message: "Message sent successfully! I'll get back to you soon." });
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "", website: "" });
+      formStartedAt.current = Date.now();
     } catch (error) {
-      console.error("EmailJS error:", error);
-      setSubmitStatus({ type: "error", message: error.text || error.message || "Failed to send message. Please try again later." });
+      console.error("Contact form error:", error);
+      setSubmitStatus({ type: "error", message: error.message || "Failed to send message. Please try again later." });
     } finally {
       setIsLoading(false);
     }
@@ -118,19 +131,23 @@ export const Contact = () => {
           <AnimatedContent distance={26} duration={0.65} delay={0.16} blur={1} className="lg:h-full">
             <SpotlightCard spotlightColor="var(--color-highlight)" intensity={0.12} spotlightSize={220} softness={0.82} borderGlow={0.28} proximity={80} smoothing={0.4} theme="dark" style={{ "--spotlight-card-surface": "color-mix(in srgb, var(--color-surface) 58%, transparent)", "--spotlight-card-shadow": "0 18px 40px -28px rgba(0, 0, 0, 0.6)" }} className="rounded-2xl border border-primary/15 p-4 sm:p-5 lg:h-full">
               <form className="space-y-3" onSubmit={handleSubmit} noValidate>
+                <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+                  <label htmlFor="contact-website">Website</label>
+                  <input id="contact-website" name="website" tabIndex="-1" autoComplete="off" value={formData.website || ""} onChange={updateField("website")} />
+                </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-foreground">Name</label>
-                    <input id="contact-name" name="name" type="text" required minLength={2} autoComplete="name" value={formData.name} onChange={updateField("name")} placeholder="Your name" className="w-full rounded-lg border border-border bg-surface/70 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/20" />
+                    <input id="contact-name" name="name" type="text" required minLength={2} maxLength={100} autoComplete="name" value={formData.name} onChange={updateField("name")} placeholder="Your name" className="w-full rounded-lg border border-border bg-surface/70 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/20" />
                   </div>
                   <div>
                     <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-foreground">Email</label>
-                    <input id="contact-email" name="email" type="email" required autoComplete="email" value={formData.email} onChange={updateField("email")} placeholder="you@example.com" className="w-full rounded-lg border border-border bg-surface/70 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/20" />
+                    <input id="contact-email" name="email" type="email" required maxLength={254} autoComplete="email" value={formData.email} onChange={updateField("email")} placeholder="you@example.com" className="w-full rounded-lg border border-border bg-surface/70 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/20" />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-foreground">Message</label>
-                  <textarea id="contact-message" name="message" rows={4} required minLength={10} value={formData.message} onChange={updateField("message")} placeholder="Tell me a little about your project..." className="w-full resize-none rounded-lg border border-border bg-surface/70 px-3.5 py-2.5 text-sm leading-6 text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/20" />
+                  <textarea id="contact-message" name="message" rows={4} required minLength={10} maxLength={5000} value={formData.message} onChange={updateField("message")} placeholder="Tell me a little about your project..." className="w-full resize-none rounded-lg border border-border bg-surface/70 px-3.5 py-2.5 text-sm leading-6 text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/20" />
                 </div>
                 <ClickSpark sparkColor="#ed1268" sparkSize={7} sparkRadius={22} sparkCount={7} sparkWidth={1.5} duration={420} className="inline-block">
                   <Magnet padding={55} magnetStrength={5} maxOffset={7} wrapperClassName="inline-block" innerClassName="inline-block">
