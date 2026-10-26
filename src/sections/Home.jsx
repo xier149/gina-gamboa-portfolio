@@ -16,7 +16,7 @@ export const Home = () => {
     >
       <div className="container relative z-10 mx-auto px-5 pb-8 pt-20 sm:px-6 sm:pb-12 sm:pt-24 lg:px-8 lg:pb-6 lg:pt-24">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.76fr)] lg:gap-6 xl:grid-cols-[minmax(0,1fr)_450px]">
-          <div className="order-2 max-w-3xl lg:order-1">
+          <div className="order-1 max-w-3xl md:order-2 lg:order-1">
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-surface/60 px-3 py-1.5 text-xs font-medium text-primary backdrop-blur-md sm:px-4 sm:py-2 sm:text-sm">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
@@ -74,27 +74,29 @@ export const Home = () => {
             </div>
           </div>
 
-          <div className="order-1 relative mx-auto h-[230px] w-full max-w-[280px] animate-fade-in animation-delay-300 sm:h-[360px] sm:max-w-[360px] lg:order-2 lg:h-[540px] lg:max-w-[430px]">
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 blur-3xl" />
-            <Lanyard
-              frontImage="/gina-id-card.svg"
-              frontPhoto="/ginagamboa.jpg"
-              imageFit="cover"
-              cardColor="#f8f3ff"
-              cornerRadius={0.35}
-              anchor="right"
-              mobileAnchor="center"
-              intro={false}
-              damping={0.55}
-              finish="matte"
-              strapLength={0.52}
-              strapColor="#6f087b"
-              strapWidth={0.65}
-              metal="graphite"
-              size={0.52}
-              mobileSize={0.40}
-              className="relative z-10"
-            />
+          <div className="order-2 relative mx-auto hidden h-[360px] w-full max-w-[360px] animate-fade-in animation-delay-300 md:order-1 md:block lg:order-2 lg:h-[600px] lg:max-w-[480px] xl:h-[640px] xl:max-w-[500px]">
+            <div className="hero-lanyard-ambient pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full" />
+            <div className="hero-lanyard-float relative z-10 h-full w-full">
+              <Lanyard
+                frontImage="/gina-id-card.svg"
+                frontPhoto="/ginagamboa.jpg"
+                imageFit="cover"
+                cardColor="#f8f3ff"
+                cornerRadius={0.35}
+                anchor="center"
+                mobileAnchor="center"
+                intro={false}
+                damping={0.55}
+                finish="matte"
+                strapLength={0.52}
+                strapColor="#6f087b"
+                strapWidth={0.65}
+                metal="graphite"
+                size={0.52}
+                mobileSize={0.40}
+                className="relative z-10"
+              />
+            </div>
           </div>
         </div>
       </div>

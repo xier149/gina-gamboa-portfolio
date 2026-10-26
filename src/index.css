@@ -98,6 +98,32 @@
     50% { transform: translateY(-10px); }
   }
 
+  @keyframes lanyard-float {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) rotate(-0.6deg);
+    }
+    50% {
+      transform: translate3d(0, -10px, 0) rotate(0.6deg);
+    }
+  }
+
+  .hero-lanyard-float {
+    animation: lanyard-float 8s ease-in-out infinite;
+    transform-origin: 50% 24%;
+    will-change: transform;
+  }
+
+  .hero-lanyard-ambient {
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-primary) 28%, transparent) 0%,
+      color-mix(in srgb, var(--color-secondary) 22%, transparent) 42%,
+      transparent 72%
+    );
+    filter: blur(18px);
+    opacity: 0.85;
+  }
+
   .animate-fade-in {
     animation: fade-in 0.8s ease-out both;
   }
@@ -137,6 +163,12 @@
   .animation-delay-300 { animation-delay: 120ms; }
   .animation-delay-400 { animation-delay: 160ms; }
   .animation-delay-500 { animation-delay: 200ms; }
+}
+
+@media (max-width: 767px) {
+  .hero-lanyard-float {
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
