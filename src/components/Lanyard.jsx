@@ -731,7 +731,9 @@ const Lanyard = ({
   finish = 'glossy',
   cornerRadius = 0.3,
   size = 0.6,
+  mobileSize,
   anchor = 'center',
+  mobileAnchor,
   strapLength = 0.5,
   strapImage,
   strapColor = '#111111',
@@ -760,7 +762,9 @@ const Lanyard = ({
     finish,
     cornerRadius,
     size,
+    mobileSize,
     anchor,
+    mobileAnchor,
     strapLength,
     strapImage,
     strapColor,
@@ -933,8 +937,11 @@ const Lanyard = ({
 
     const frameView = () => {
       const s = settingsRef.current;
+      const isMobile = window.innerWidth < 640;
+      const activeSize = isMobile && s.mobileSize ? s.mobileSize : s.size;
+      const activeAnchor = isMobile && s.mobileAnchor ? s.mobileAnchor : s.anchor;
       const aspect = view.width / view.height;
-      let viewHeight = layout.height / clamp(s.size, 0.15, 0.9);
+      let viewHeight = layout.height / clamp(activeSize, 0.15, 0.9);
       const minimumWidth = layout.width / 0.72;
       if (viewHeight * aspect < minimumWidth) viewHeight = minimumWidth / aspect;
       const viewWidth = viewHeight * aspect;
@@ -946,7 +953,7 @@ const Lanyard = ({
       foilUniforms.foilKey.value.set(-2.5, 4, 6).normalize().transformDirection(camera.matrixWorldInverse);
       foilUniforms.foilFill.value.set(3, -1, 4).normalize().transformDirection(camera.matrixWorldInverse);
       foilUniforms.foilTop.value.set(0.5, 4.5, 8).normalize().transformDirection(camera.matrixWorldInverse);
-      const anchorX = ((ANCHORS[s.anchor] ?? 0.5) - 0.5) * viewWidth;
+      const anchorX = ((ANCHORS[activeAnchor] ?? 0.5) - 0.5) * viewWidth;
       const anchorY = viewHeight / 2 + 0.2;
       const cardTop = viewHeight / 2 - viewHeight * mix(0.12, 0.42, clamp(s.strapLength, 0, 1));
       const hangTop = cardTop + (layout.hangY - layout.height / 2);
@@ -974,7 +981,9 @@ const Lanyard = ({
         ring.position.set(0, layout.ringY, 0);
         applied.framingKey = '';
       }
-      const framingKey = `${layoutKey}|${s.size}|${s.anchor}|${s.strapLength}|${view.width}|${view.height}`;
+      const activeSize = window.innerWidth < 640 && s.mobileSize ? s.mobileSize : s.size;
+      const activeAnchor = window.innerWidth < 640 && s.mobileAnchor ? s.mobileAnchor : s.anchor;
+      const framingKey = `${layoutKey}|${activeSize}|${activeAnchor}|${s.strapLength}|${view.width}|${view.height}`;
       if (framingKey !== applied.framingKey) {
         frameView();
         if (!placed) {

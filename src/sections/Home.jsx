@@ -12,49 +12,49 @@ export const Home = () => {
   return (
     <section
       id="Home"
-      className="relative flex min-h-[calc(100vh-4rem)] items-center overflow-visible"
+      className="relative flex min-h-[calc(100vh-4rem)] items-start overflow-visible lg:items-center"
     >
-      <div className="container relative z-10 mx-auto px-6 pb-10 pt-24 sm:pb-12 lg:px-8 lg:pb-6 lg:pt-24">
+      <div className="container relative z-10 mx-auto px-5 pb-8 pt-20 sm:px-6 sm:pb-12 sm:pt-24 lg:px-8 lg:pb-6 lg:pt-24">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.76fr)] lg:gap-6 xl:grid-cols-[minmax(0,1fr)_450px]">
-          <div className="max-w-3xl">
+          <div className="order-2 max-w-3xl lg:order-1">
             <div className="animate-fade-in">
-              <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-surface/60 px-4 py-2 text-sm font-medium text-primary backdrop-blur-md">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-surface/60 px-3 py-1.5 text-xs font-medium text-primary backdrop-blur-md sm:px-4 sm:py-2 sm:text-sm">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-                AI-Augmented Software Developer
+                AI-Augmented Software Developer Intern
               </span>
             </div>
 
             <div className="mt-5 space-y-5 sm:mt-6 sm:space-y-5">
               <h1 className="max-w-3xl text-3xl font-bold leading-[1.06] tracking-tight text-white animate-fade-in animation-delay-100 sm:text-4xl lg:text-5xl xl:text-6xl">
-                Building smarter applications,
+                Building practical software,
                 <span className="block text-primary glow-text">
-                  from frontend to backend.
+                  from interface to integration.
                 </span>
               </h1>
 
               <p className="max-w-2xl text-base leading-7 text-muted-foreground animate-fade-in animation-delay-200 sm:text-lg sm:leading-8">
-                I build practical, user-focused software with AI-augmented
-                development workflows. My focus spans responsive frontend
-                experiences, reliable backend systems, and workflow automation
-                that helps teams move from idea to useful product faster.
+                I contribute across frontend and backend development, API
+                integration, workflow automation, and database-backed systems.
+                I use AI-assisted tools to investigate problems, test ideas,
+                and collaborate on software that is useful and maintainable.
               </p>
             </div>
 
-            <div className="mt-7 flex flex-wrap gap-4 animate-fade-in animation-delay-300 sm:mt-8">
-              <a href="#projects">
-                <Button size="lg">
+            <div className="mt-6 flex flex-col gap-3 animate-fade-in animation-delay-300 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4">
+              <a href="#projects" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full px-5 py-3 text-sm sm:w-auto sm:px-8 sm:py-4 sm:text-lg">
                   View My Projects <ArrowRight className="h-5 w-5" />
                 </Button>
               </a>
-              <a href="/CV/Gina_Gamboa_CV.pdf" download="Gina-Gamboa-Resume">
-                <AnimatedBorderButton>
+              <a href="/CV/Gina_Gamboa_CV.pdf" download="Gina-Gamboa-Resume" className="w-full sm:w-auto">
+                <AnimatedBorderButton className="w-full px-5 py-3 text-sm sm:w-auto sm:px-8 sm:py-4 sm:text-lg">
                   <Download className="h-5 w-5" />
                   Download CV
                 </AnimatedBorderButton>
               </a>
             </div>
 
-            <div className="mt-7 flex items-center gap-4 animate-fade-in animation-delay-400">
+            <div className="mt-6 flex items-center justify-center gap-3 animate-fade-in animation-delay-400 sm:mt-7 sm:justify-start sm:gap-4">
               <span className="text-sm text-muted-foreground">Connect with me</span>
               <div className="h-px w-8 bg-border" />
               <a
@@ -74,7 +74,7 @@ export const Home = () => {
             </div>
           </div>
 
-          <div className="relative mx-auto h-[430px] w-full max-w-[430px] animate-fade-in animation-delay-300 sm:h-[500px] lg:h-[540px]">
+          <div className="order-1 relative mx-auto h-[230px] w-full max-w-[280px] animate-fade-in animation-delay-300 sm:h-[360px] sm:max-w-[360px] lg:order-2 lg:h-[540px] lg:max-w-[430px]">
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 blur-3xl" />
             <Lanyard
               frontImage="/gina-id-card.svg"
@@ -83,6 +83,7 @@ export const Home = () => {
               cardColor="#f8f3ff"
               cornerRadius={0.35}
               anchor="right"
+              mobileAnchor="center"
               intro={false}
               damping={0.55}
               finish="matte"
@@ -91,6 +92,7 @@ export const Home = () => {
               strapWidth={0.65}
               metal="graphite"
               size={0.52}
+              mobileSize={0.40}
               className="relative z-10"
             />
           </div>

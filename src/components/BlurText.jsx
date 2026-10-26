@@ -27,6 +27,10 @@ const BlurText = ({
   const armedRef = useRef(true);
   const timerRef = useRef(0);
   const reduceMotion = useReducedMotion();
+  const isCompactViewport = typeof window !== "undefined" && window.innerWidth < 640;
+  const effectiveStartDelay = isCompactViewport ? Math.min(startDelay, 120) : startDelay;
+  const effectiveBlur = isCompactViewport ? Math.min(blur, 6) : blur;
+  const effectiveDuration = isCompactViewport ? Math.min(duration, 0.35) : duration;
   const [visible, setVisible] = useState(trigger !== "view" || reduceMotion);
   const [axis, sign] = directions[direction] || directions.top;
 
@@ -54,7 +58,7 @@ const BlurText = ({
       if (entry.isIntersecting) {
         if (armedRef.current) {
           armedRef.current = false;
-          timerRef.current = window.setTimeout(() => setVisible(true), Math.max(0, startDelay));
+          timerRef.current = window.setTimeout(() => setVisible(true), Math.max(0, effectiveStartDelay));
         }
       } else {
         armedRef.current = true;
@@ -67,11 +71,11 @@ const BlurText = ({
       observer.disconnect();
       window.clearTimeout(timerRef.current);
     };
-  }, [reduceMotion, rootMargin, startDelay, threshold, trigger]);
+  }, [effectiveStartDelay, reduceMotion, rootMargin, threshold, trigger]);
 
   const hidden = {
     opacity: 0,
-    filter: `blur(${Math.max(0, blur)}px)`,
+    filter: `blur(${Math.max(0, effectiveBlur)}px)`,
     [axis]: sign * distance,
   };
   const shown = { opacity: 1, filter: "blur(0px)", [axis]: 0 };
@@ -85,7 +89,7 @@ const BlurText = ({
             key={piece.key}
             initial={reduceMotion ? false : hidden}
             animate={visible || reduceMotion ? shown : hidden}
-            transition={reduceMotion ? { duration: 0 } : { duration, delay: (index * delay) / 1000, ease: [0.33, 1, 0.68, 1] }}
+            transition={reduceMotion ? { duration: 0 } : { duration: effectiveDuration, delay: (index * delay) / 1000, ease: [0.33, 1, 0.68, 1] }}
             className="inline-block will-change-[transform,filter,opacity]"
           >
             {piece.content}

@@ -33,6 +33,14 @@ const techStack = [
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-sky-400", category: "frontend" },
 ];
 
+const skillGroups = [
+  { label: "Frontend", items: techStack.filter((tech) => tech.category === "frontend" || tech.name === "React") },
+  { label: "Backend", items: techStack.filter((tech) => tech.category === "backend" || tech.name === "Laravel") },
+  { label: "Databases", items: techStack.filter((tech) => tech.category === "database") },
+  { label: "AI & Automation", items: [{ name: "AI-assisted development" }, { name: "Workflow automation" }, { name: "API integration" }] },
+  { label: "Development Tools", items: techStack.filter((tech) => tech.category === "tools") },
+];
+
 export const TechStack = () => {
   const logoItems = techStack.map((tech) => {
     const Icon = tech.icon;
@@ -46,12 +54,12 @@ export const TechStack = () => {
   });
 
   return (
-    <section id="TechStack" className="relative overflow-hidden py-12 sm:py-16">
-      <LogoLoop
+    <section id="TechStack" className="relative overflow-hidden py-10 sm:py-16">
+      <div className="hidden lg:block">
+        <LogoLoop
         logos={logoItems}
         speed={72}
-        logoHeight={38}
-        gap={52}
+        gap="clamp(24px, 8vw, 52px)"
         pauseOnHover
         labels="below"
         fadeOut
@@ -60,8 +68,28 @@ export const TechStack = () => {
         draggable
         intro
         ariaLabel="Technology stack"
+        logoHeight="clamp(30px, 9vw, 38px)"
         style={{ width: "100%" }}
-      />
+        />
+      </div>
+      <div className="container mx-auto px-5 sm:px-6 lg:hidden">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">Technical toolkit</p>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">Tools I use to build and improve software.</h2>
+        </div>
+        <div className="mt-7 grid gap-3 min-[360px]:grid-cols-2">
+          {skillGroups.map((group) => (
+            <div key={group.label} className="rounded-2xl border border-border/60 bg-surface/40 p-4 backdrop-blur-sm">
+              <h3 className="text-sm font-semibold text-foreground">{group.label}</h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span key={item.name} className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1.5 text-xs text-muted-foreground">{item.name}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

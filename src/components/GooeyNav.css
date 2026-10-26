@@ -99,6 +99,32 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+@media (max-width: 639px) {
+  .portfolio-nav-scroll {
+    max-width: calc(100vw - 1rem);
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+  }
+
+  .portfolio-gooey-nav {
+    max-width: none;
+  }
+
+  .portfolio-gooey-nav .gooey-nav__stage,
+  .portfolio-gooey-nav .gooey-nav__list {
+    width: max-content;
+  }
+
+  .portfolio-gooey-nav .gooey-nav__list {
+    flex-wrap: nowrap;
+  }
+
+  .gooey-nav--sm {
+    --gn-x: 11px;
+    --gn-y: 10px;
+  }
+}
+
 .gooey-nav__list--active .gooey-nav__link {
   color: inherit;
 }

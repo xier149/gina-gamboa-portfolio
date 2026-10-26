@@ -11,6 +11,8 @@ node_modules/
 dist
 dist-ssr
 .vercel/
+.playwright-mcp/
+artifacts/
 *.local
 .env*
 !.env.example

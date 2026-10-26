@@ -74,11 +74,11 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
+    <section id="contact" className="relative overflow-hidden py-14 sm:py-20 lg:py-24">
       <div className="pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-secondary/10 blur-3xl" />
       <div className="pointer-events-none absolute bottom-1/4 right-1/4 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
 
-      <div className="container relative z-10 mx-auto px-6 lg:px-8">
+      <div className="container relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
         <AnimatedContent distance={28} duration={0.7} blur={1} className="mx-auto mb-8 max-w-2xl text-center lg:mb-10">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">Get in touch</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-secondary-foreground sm:text-4xl lg:text-5xl">
@@ -100,13 +100,13 @@ export const Contact = () => {
         </AnimatedContent>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-stretch lg:gap-8">
-          <AnimatedContent distance={26} duration={0.65} delay={0.08} blur={1} className="lg:h-full">
-            <div className="flex rounded-2xl border border-border/70 bg-surface/45 p-4 backdrop-blur-sm sm:p-5 lg:h-full lg:flex-col">
+          <AnimatedContent distance={26} duration={0.65} delay={0.08} blur={1} className="min-w-0 lg:h-full">
+            <div className="flex min-w-0 flex-col rounded-2xl border border-border/70 bg-surface/45 p-4 backdrop-blur-sm sm:flex-row sm:p-5 lg:h-full lg:flex-col">
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">Contact information</p>
                 <h3 className="mt-2.5 text-xl font-semibold text-foreground">Let&apos;s start a conversation.</h3>
                 <p className="mt-2.5 max-w-md text-xs leading-5 text-muted-foreground sm:text-sm">
-                  I&apos;m open to discussing software projects, development opportunities, and ideas that solve useful problems.
+                  I&apos;m open to relevant software development opportunities, internships, collaborations, and ideas that solve useful problems.
                 </p>
                 <div className="mt-5 space-y-1">
                   {contactInfo.map(({ icon: Icon, label, value, href }) => (
@@ -128,7 +128,7 @@ export const Contact = () => {
             </div>
           </AnimatedContent>
 
-          <AnimatedContent distance={26} duration={0.65} delay={0.16} blur={1} className="lg:h-full">
+          <AnimatedContent distance={26} duration={0.65} delay={0.16} blur={1} className="min-w-0 lg:h-full">
             <SpotlightCard spotlightColor="var(--color-highlight)" intensity={0.12} spotlightSize={220} softness={0.82} borderGlow={0.28} proximity={80} smoothing={0.4} theme="dark" style={{ "--spotlight-card-surface": "color-mix(in srgb, var(--color-surface) 58%, transparent)", "--spotlight-card-shadow": "0 18px 40px -28px rgba(0, 0, 0, 0.6)" }} className="rounded-2xl border border-primary/15 p-4 sm:p-5 lg:h-full">
               <form className="space-y-3" onSubmit={handleSubmit} noValidate>
                 <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
