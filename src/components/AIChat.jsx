@@ -63,8 +63,8 @@ export const AIChat = () => {
           ? "The AI assistant is temporarily rate-limited. Please try again later."
           : response.status >= 500
             ? "The AI assistant is temporarily unavailable. Please contact Gina directly."
-            : "Please check your question and try again.";
-        throw new Error(result.error || fallback);
+            : "The chat request could not be processed. Please try again or contact Gina directly.";
+        throw new Error(typeof result.error === "string" && result.error.trim() ? result.error : fallback);
       }
       setMessages((current) => [...current, { role: "model", text: result.answer }]);
     } catch (requestError) {
