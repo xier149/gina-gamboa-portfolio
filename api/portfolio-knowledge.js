@@ -21,8 +21,8 @@ Technical focus
 Internship experience
 - Employer: Geidi IT Services.
 - Role: AI-Augmented Software Developer.
-- OJT record: 540 hours documented from June 1 to September 11, 2026.
-- Direct answer: Gina completed 540 documented internship hours at Geidi IT Services from June 1 to September 11, 2026.
+- OJT record: 1,000 total hours expected, beginning June 1, 2026 and continuing until the first week of December 2026.
+- Direct answer: Gina is completing 1,000 internship hours at Geidi IT Services, from June 1, 2026 until the first week of December 2026.
 - The projects below are documented internship work and research activities. Treat their statuses as historical unless newer verified information is added. Do not disclose confidential client information, credentials, private documents, or internal system details.
 - Across this internship, Gina contributed to frontend and backend development, API and systems integration, workflow automation, database-related work, testing, debugging, documentation, collaboration, and AI-assisted development. Describe these as contributions or areas of work, not as unsupported independent ownership or outcomes.
 
