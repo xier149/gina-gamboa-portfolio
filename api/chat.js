@@ -9,6 +9,15 @@ const MAX_HISTORY_MESSAGE_LENGTH = 900;
 const GEMINI_TIMEOUT_MS = 12_000;
 const MODEL_CACHE_MS = 5 * 60 * 1000;
 
+const responseGuidance = `
+RESPONSE STYLE
+- Answer only from the approved portfolio knowledge above. Never invent qualifications, outcomes, metrics, technologies, or responsibilities.
+- Use concise Markdown that renders cleanly: short paragraphs, bold labels when helpful, and bullets or numbered lists only when they improve scanning. Do not use HTML.
+- For a simple factual question, answer directly in one or two sentences without unnecessary headings.
+- For a broad question such as "Tell me about Gina", use these short sections only when relevant: Overview, Experience, Technical Skills, Projects, and Achievements. Keep each section brief.
+- Avoid repetition, long introductions, generic filler, and unsupported claims. If the knowledge base does not contain the answer, say so clearly and suggest contacting Gina directly.
+`;
+
 const requestLog = new Map();
 const lastRequestAt = new Map();
 let modelCache = { expiresAt: 0, models: [] };
@@ -162,11 +171,11 @@ export default async function handler(request, response) {
       headers: { "Content-Type": "application/json" },
       signal: controller.signal,
       body: JSON.stringify({
-        systemInstruction: { parts: [{ text: portfolioKnowledge }] },
+        systemInstruction: { parts: [{ text: `${portfolioKnowledge}\n${responseGuidance}` }] },
         contents,
         generationConfig: {
           temperature: 0.2,
-          maxOutputTokens: 350,
+          maxOutputTokens: 300,
         },
       }),
     });

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Bot, Eraser, MessageCircle, Send, Sparkles, X } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 const suggestedQuestions = [
   "What is Gina's current role?",
@@ -11,6 +12,22 @@ const suggestedQuestions = [
 const initialMessage = {
   role: "model",
   text: "Hi! I’m Gina’s AI assistant. Ask me about her background, projects, skills, or certifications.",
+};
+
+const markdownComponents = {
+  h1: ({ children }) => <h3 className="mb-2 mt-3 text-sm font-semibold text-primary first:mt-0">{children}</h3>,
+  h2: ({ children }) => <h3 className="mb-2 mt-3 text-sm font-semibold text-primary first:mt-0">{children}</h3>,
+  h3: ({ children }) => <h3 className="mb-1.5 mt-3 text-sm font-semibold text-primary first:mt-0">{children}</h3>,
+  p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+  ul: ({ children }) => <ul className="mb-2 list-disc space-y-1 pl-4 last:mb-0">{children}</ul>,
+  ol: ({ children }) => <ol className="mb-2 list-decimal space-y-1 pl-4 last:mb-0">{children}</ol>,
+  li: ({ children }) => <li className="pl-0.5">{children}</li>,
+  strong: ({ children }) => <strong className="font-semibold text-foreground">{children}</strong>,
+  a: ({ children, href }) => (
+    <a href={href} target="_blank" rel="noreferrer" className="text-primary underline decoration-primary/40 underline-offset-2 hover:decoration-primary">
+      {children}
+    </a>
+  ),
 };
 
 export const AIChat = () => {
@@ -114,7 +131,11 @@ export const AIChat = () => {
             {messages.map((item, index) => (
               <div key={`${item.role}-${index}`} className={`flex ${item.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[88%] rounded-2xl px-3.5 py-2.5 text-sm leading-6 ${item.role === "user" ? "rounded-br-md bg-primary text-primary-foreground" : "rounded-bl-md border border-border/70 bg-surface/70 text-foreground"}`}>
-                  {item.text}
+                  {item.role === "model" ? (
+                    <ReactMarkdown skipHtml components={markdownComponents}>
+                      {item.text}
+                    </ReactMarkdown>
+                  ) : item.text}
                 </div>
               </div>
             ))}
