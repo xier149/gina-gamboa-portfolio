@@ -46,10 +46,10 @@ export const Home = () => {
                   View My Projects <ArrowRight className="h-5 w-5" />
                 </Button>
               </a>
-              <a href="/CV/Gina_Gamboa_CV.pdf" download="Gina-Gamboa-Resume" className="w-full sm:w-auto">
+              <a href="/resume.pdf" download="Gamboa_Software_Developer_Portfolio_Resume.pdf" className="w-full sm:w-auto">
                 <AnimatedBorderButton className="w-full px-5 py-3 text-sm sm:w-auto sm:px-8 sm:py-4 sm:text-lg">
                   <Download className="h-5 w-5" />
-                  Download CV
+                  Download Resume
                 </AnimatedBorderButton>
               </a>
             </div>
