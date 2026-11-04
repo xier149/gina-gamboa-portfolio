@@ -94,10 +94,21 @@ Projects
 - Contribution: Built the themed storefront interface and product browsing/filtering patterns.
 - No live demo or GitHub link is currently approved for this project.
 
+Academic achievements and training
+- Gina placed in the Top 11 in a Java Programming Competition.
+- During the Alliance RAD Training Program, Gina received an Outstanding Performance Award.
+- As part of the Alliance RAD Training Program, Gina worked with a team that developed a website and gained hands-on experience with Microsoft Power Apps, Power BI, and Power Automate. Describe this as team project experience, not independent development or ownership.
+
 Certifications
 - The portfolio contains 29 certificates from Coursera and Alliance RAD Training.
-- Relevant examples include Google IT Automation with Python, Google IT Support, Google UX Design, Troubleshooting and Debugging Techniques, Introduction to Git and GitHub, and Alliance RAD Training completions.
+- Completed Google certifications through Coursera: Google IT Support, Google IT Automation with Python, and Google UX Design.
+- Other approved certificates include Troubleshooting and Debugging Techniques, Introduction to Git and GitHub, and Alliance RAD Training completions.
 - Do not claim that a certificate proves professional experience or advanced mastery.
+
+Professional development sessions
+- Gina attended a personal and professional growth session conducted by Synchrony.
+- Gina participated in a JPMorgan Chase & Co. session covering corporate life, workplace expectations, and professional development.
+- These were attended learning sessions, not employment, certifications, or independent project accomplishments.
 
 Contact and links
 - Email: gina18gamboa@gmail.com
